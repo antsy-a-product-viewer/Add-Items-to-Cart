@@ -1,7 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 
-const url = 'mongodb://localhost:3001';
+const url = 'mongodb://localhost:3000';
 
 const dbName = 'storeItems';
 
