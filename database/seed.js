@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/store');
+mongoose.connect('mongodb://localhost/checkout');
 
 
 var db = mongoose.connection;
@@ -130,8 +130,25 @@ var updateInventory = function(){
   return console.log('done')
 }
 
-var callUpdateInvetory = () => {
+var checkInventoryList = (callback) => {
+  // inventoryList.find({'productId': 1}, (inventory) => {
+  //   if (err){
+  //     console.log(err)
+  //     return;
+  //   }
+  //   callback(inventory)
+  // });
+  inventoryList.
+    find({'productId' : 1}).
+    exec(callback)
+};
+
+
+var callUpdateInventory = () => {
   updateInventory()
 }
 
-callUpdateInvetory()
+
+// callUpdateInventory()
+
+module.exports.checkInventoryList = checkInventoryList
