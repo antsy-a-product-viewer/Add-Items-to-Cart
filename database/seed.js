@@ -16,7 +16,7 @@ var inventorySchema = mongoose.Schema({
   price: Number,
   description: String, 
   overview: Array,
-  options: {}, //Let's me create an obj
+  options: {},
   quantityInStock: Number,
   availableToReturn : Boolean, 
   shippingCosts : Number,
@@ -96,37 +96,42 @@ var randomOptions = function() {
     options[keyValue] = optionSelection; //Sets the key with x amount of options
   }
   return options;
-}
+};
 
 var manufacturingTime = function(){
-  Math.floor(randomNumberGenerator(6))
-}
-
-
-var checkInventory = function(){
-
-//Filter through the inventory list checking if a specific inventory is in stock
-}
+  return Math.floor(randomNumberGenerator(6))
+};
 
 var updateInventory = function(){
-  for (let itemId = 1; itemId < 101; itemId++){
-    itemId = new inventoryList({
-      productId: itemId, 
-      price: randomNumberGenerator(100),
-      description: randomDescription(), 
-      overview: randomOverview(),
-      options: randomOptions(), //Let's me create an obj
-      quantityInStock: randomNumberGenerator(100),
-      availableToReturn : itemCanReturn(), 
-      shippingCosts : shippingCost(),
-      manufacturingTime : manufacturingTime()     
-    });
-    itemId.insert(function(err, itemId){ //Change to update and use upsert
-      if (err){
-        console.log("Item failed to save")
-      } else{
-        console.log("Item saved successfully to database")
-      }
-    })
-  }
+
+  // let count = 0; 
+  // function createInventory(){
+    for (var itemId = 1; itemId < 101; itemId++){
+      var newItem;
+      newItem = new inventoryList({
+        productId: itemId, 
+        price: randomNumberGenerator(100),
+        description: randomDescription(), 
+        overview: randomOverview(),
+        options: randomOptions(), //Let's me create an obj
+        quantityInStock: randomNumberGenerator(100),
+        availableToReturn : itemCanReturn(), 
+        shippingCosts : shippingCost(),
+        manufacturingTime : manufacturingTime()     
+      });
+      newItem.save(function(err, itemId){ //Change to update and use upsert
+        if (err){
+          console.log(err)
+        } else{
+          console.log("Item saved successfully to database")
+        }
+      })
+    } 
+  return console.log('done')
 }
+
+var callUpdateInvetory = () => {
+  updateInventory()
+}
+
+callUpdateInvetory()
