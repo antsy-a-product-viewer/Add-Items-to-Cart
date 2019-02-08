@@ -8,23 +8,30 @@ app.use(express.static(__dirname + '/../client/dist')) //root directory to serve
 app.use(bodyParser.json());
 
 app.get('/checkout/:productId', (req, res) => {
-  console.log("get request working")
-  //req.params
-  store.checkInventoryList((err, inventory) => {
+  var item = req.params.productId;
+  store.checkInventoryList(item, (err, inventory) => {
     if (err){
-      console.log(err, 'this is err')
-      console.log(inventory, 'this is inveotyr')
       res.status(404).send("request failed")
     }
     res.status(200).send(inventory);
   });
-  // res.status(201).send('user' + req.params.productId)
 });
 
 
 
 app.post('/checkout/:productId', (req, res) => {
-  console.log('post request working')
+  // console.log('post request working')
+  var item = req.params.productId;
+  // store.updateInventory(err, item, req.body.amountBought => {
+  // if (err){
+  //   console.log(err)
+  //   res.status(201).send('Not saved')
+  //   return;
+  // }
+  // res.status(201).send('saved in database')
+  // })
+  store.updateInventory(item, req.body.amountBought) 
+  res.status(201).send('data changed in database')
 })
 
 
