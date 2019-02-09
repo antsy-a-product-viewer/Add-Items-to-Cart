@@ -1,23 +1,21 @@
 module.exports = {
-  entry: __dirname + '/client/src/index.jsx',  
+  entry: `${__dirname }/client/src/index.jsx`,
   module: {
     rules: [
       {
-        test: /\.jsx$/, //It will transpile every file with the jsx extension 
+        test: /\.jsx$/, // It will transpile every file with the jsx extension
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets :['@babel/preset-react', '@babel/preset-env']
-          }
-        }
-      } 
-    ]
+            presets: ['@babel/preset-react', '@babel/preset-env'],
+          },
+        },
+      },
+    ],
   },
   output: {
     filename: 'bundle.js',
-    path: __dirname + '/client/dist'
-  }
+    path: `${__dirname }/client/dist`,
+  },
 };
-
-
