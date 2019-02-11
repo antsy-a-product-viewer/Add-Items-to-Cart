@@ -27,16 +27,24 @@ class ItemDescription extends React.Component {
 
 
   postingDescription() {
-    getItemInfo((err, data) => {
-      if (err){
-        console.log(err);
-        return;
-      }
-      this.setState ({
-        description: data[0]['description'],
-        price: data[0]['price']
-      })
+    // getItemInfo((err, data) => {
+    //   if (err){
+    //     console.log(err);
+    //     return;
+    //   }
+    // })
+    const number = Math.floor(Math.random() * 100 + 1);
+    fetch(`/checkout/${number}`)
+    .then((res) => {
+      return res.json();
     })
+    .then((res) => {
+      console.log('RES',res);
+        this.setState ({
+          description: res[0]['description'],
+          price: res[0]['price']
+        })
+      })
   }
 
   render() {
