@@ -6,6 +6,9 @@ import SelectionListPossibilities from './selectionListPossibilities.jsx'
 class SelectionList extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      selectionPossibilties : []
+    }
     this.getItemOptions = this.getItemOptions.bind(this);
   }
 
@@ -36,8 +39,8 @@ class SelectionList extends React.Component {
   // }
 
   getItemOptions(){
+    console.log(this.state.selectionPossibilties)
     var selection = [];
-    console.log('this function is running')
     return getItemSelection(this.props.randomItemNumber)
       .then((data) => {
         console.log(data, 'this is data')
@@ -49,13 +52,16 @@ class SelectionList extends React.Component {
             selection.push(keys)
           }
         }
-        console.log(selection[0], 'after return statement')
-        return selection;
-      })
-      .then((selection) => {
+          console.log(this.state.selectionPossibilties, 'possibilities')
         console.log(selection, 'selection getting caught')
-        return selection;
+        this.setState({
+          selectionPossibilties : selection
+        })
+        // return selection;
       })
+      // .then((selection) => {
+      //   // return selection;
+      // })
       // .then((selection) => {
       //   selection.map(selections => {
       //     console.log(selections, 'props are being passed down properly')
@@ -79,7 +85,7 @@ class SelectionList extends React.Component {
   render(){
     return(
     <div className = "selectionList"> 
-      <SelectionListPossibilities selections={this.getItemOptions()}/>
+      <SelectionListPossibilities selections={this.state.selectionPossibilties}/>
     </div> 
     )
   }
