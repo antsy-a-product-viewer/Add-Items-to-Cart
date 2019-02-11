@@ -53,6 +53,7 @@ class ItemDescription extends React.Component {
         </div>
         {/* <div className="option">{this.state.option} </div> */}
         <div className="optionNames"> 
+         
           <SelectionList randomItemNumber={this.state.randomItem}/> 
         </div>
         <div>
