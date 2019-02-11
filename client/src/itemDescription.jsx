@@ -5,15 +5,17 @@
 /* eslint-disable no-useless-constructor */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import getItemInfo from './getItemInformation.js'
+import SelectionList from './Components/SelectionList.jsx'
 
 
 class ItemDescription extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      randomItem: Math.floor(Math.random() * 100 + 1), //Gets a random item from the database
       description: [],
-      price: []
+      price: [],
+      option: []
     };
     this.postingDescription = this.postingDescription.bind(this);
   }
@@ -26,38 +28,36 @@ class ItemDescription extends React.Component {
   }
 
 
+  // const number = Math.floor(Math.random() * 100 + 1); 
   postingDescription() {
-    // getItemInfo((err, data) => {
-    //   if (err){
-    //     console.log(err);
-    //     return;
-    //   }
-    // })
-    const number = Math.floor(Math.random() * 100 + 1);
-    fetch(`/checkout/${number}`)
+    fetch(`/checkout/${this.state.randomItem}`)
     .then((res) => {
       return res.json();
     })
     .then((res) => {
-      console.log('RES',res);
-        this.setState ({
-          description: res[0]['description'],
-          price: res[0]['price']
-        })
+      console.log(res)
+      this.setState ({
+        description: res[0]['description'],
+        price: res[0]['price']
       })
+    })
   }
 
   render() {
     return (
       <div>
-      <div>{this.state.description }</div>
-      <div className="price"> ${this.state.price} </div>
-      <div className="price">
-      <button> Ask A Question </button>
-      </div>
-      <div>
-      <button id="addToCart"> Add to Cart </button>
-      </div>
+        <div>{this.state.description }</div>
+        <div className="price"> ${this.state.price} </div>
+        <div className="price">
+          <button> Ask A Question </button>
+        </div>
+        {/* <div className="option">{this.state.option} </div> */}
+        <div className="optionNames"> 
+          <SelectionList randomItemNumber={this.state.randomItem}/> 
+        </div>
+        <div>
+          <button id="addToCart"> Add to Cart </button>
+        </div>
       </div>
     );
   }

@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import ItemDescription from './itemDescription.jsx';
 
 
-class App extends React.Component {
+class Cart extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -29,6 +29,6 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Cart;
 
 // eslint-disable-next-line no-undef
