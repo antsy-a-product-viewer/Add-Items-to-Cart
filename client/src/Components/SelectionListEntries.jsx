@@ -15,11 +15,6 @@ class SelectionListEntries extends React.Component {
       <div>
         <div className= "selectionLists">
           {this.props.selection}
-          {/* <select> 
-            <option>
-              {this.props.option}
-            </option>
-          </select> */}
         </div>
       </div>
     )
