@@ -3,7 +3,7 @@ import OverviewListEntry from './OverviewListEntry.jsx'
 
 const OverviewList = (props) => {
   return (
-    <div>
+    <div >
       {props.overviews.map(overview => {
         return <OverviewListEntry overview={overview}/>
       })}

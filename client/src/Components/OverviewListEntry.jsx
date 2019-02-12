@@ -2,9 +2,9 @@ import React from 'react'
 
 const OverviewListEntry = (props) => {
   return (
-    <div>
+    <li style={{listStyle: 'disc', paddingLeft: "10px"}}>
       {props.overview}
-    </div>
+    </li>
   )
 }
 

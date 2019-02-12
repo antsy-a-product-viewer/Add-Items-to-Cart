@@ -15,6 +15,7 @@ class Overview extends React.Component{
     this.getOverview = this.getOverview.bind(this);
     this.getShippingInformation = this.getShippingInformation.bind(this);
     this.getReturnPolicy = this.getReturnPolicy.bind(this);
+    this.getShippingInfo = this.getShippingInfo.bind(this);
   }
   
   componentDidMount(){
@@ -76,29 +77,40 @@ class Overview extends React.Component{
         console.log(err, 'failed to get return policy')
       })
   }
+
+  getShippingInfo(){
+    event.preventDefault();
+    console.log("get shipping info worked")
+    //Supposed to show new page with shipping information
+  }
   //Need to conditionally display this overview statement
   render(){
     return(
       <div>
-        <div className="Overview">
+        <div className="OverallOverview" >
+          <div className="Overview" style={{fontWeight: 'bold'}}>
           Overview 
+          </div>
           <OverviewList overviews={this.state.overview}/>
         </div>
 
         <div className="shippingInformation">
-          <div className="manufacturingTime">
+          <div style={{fontWeight: 'bold'}}>
+            Shipping & Returns
+          </div>
+          <div className="manufacturingTime" style={{fontWeight: 'bold'}}>
             Ready to ship in {this.state.shippingTime}-{this.state.shippingTime + 2} days
           </div>
           <div className="shippedFrom">
             From California
           </div>
-          <div className="shippingCost">
+          <div className="shippingCost" style={{textDecorationLine: 'underline', cursor: "pointer"}} onClick={this.getShippingInfo}>
              Get Shipping Cost 
           </div>
         </div>
 
         <div className="returnPolicy">
-          <div className="returns">
+          <div className="returns" style={{fontWeight: 'bold'}}>
             {this.state.returnPolicy}
           </div>
           <div className="returnPolicy">
