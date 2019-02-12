@@ -1,3 +1,4 @@
+/* eslint-disable new-cap */
 /* eslint-disable func-names */
 /* eslint-disable prefer-const */
 /* eslint-disable comma-dangle */
@@ -41,7 +42,7 @@ let randomPhraseGenerator = function () {
   let returnedRandomString = '';
   let randomLength = Math.floor((randomNumberGenerator(20))); // Generates a random number between 0 - 20
   let randomWord = Math.floor((randomNumberGenerator(341)));
-  for (let i = 0; i < randomLength; i++) {
+  for (let i = 0; i < randomLength; i += 1) {
     // eslint-disable-next-line no-shadow
     let randomWord = Math.floor((randomNumberGenerator(341)));
     returnedRandomString += `${randomWordsArray[randomWord]} `;
@@ -60,9 +61,9 @@ let randomDescription = function () {
   let description = '';
   let randomWordsArray = randomWords.split(' ');
   let randomLength = Math.floor(randomNumberGenerator(10) + 15);
-  for (let i = 0; i < randomLength; i++) {
+  for (let i = 0; i < randomLength; i += 1) {
     let randomWord = Math.floor((randomNumberGenerator(341)));
-    description += `${randomWordsArray[randomWord]  } `;
+    description += `${randomWordsArray[randomWord]} `;
   }
   return description;
 };
@@ -70,7 +71,7 @@ let randomDescription = function () {
 let randomOverview = function () {
   let comments = Math.floor(randomNumberGenerator(4));
   let overview = [];
-  for (let i = 0; i < comments; i++) {
+  for (let i = 0; i < comments; i += 1) {
     overview.push(randomPhraseGenerator());
   }
   return overview;
@@ -80,12 +81,12 @@ let randomOptions = function () {
   let options = {}; // Storing all of the possible options
   let randomWordsArray = randomWords.split(' '); // splits the random words into an array
   let possibleOptions = Math.floor(randomNumberGenerator(4)); // generates a number of 0 - 3 option possibilities
-  for (let i = 0; i < possibleOptions; i++) { // Iterates possibilities amount of times
+  for (let i = 0; i < possibleOptions; i += 1) { // Iterates possibilities amount of times
     let possibleValues = Math.floor((randomNumberGenerator(341))); // generates a random between between 0 - 341
     let keyValue = randomWordsArray[possibleValues]; // The option selection will be this value
     let optionSelection = []; // Array of options being put into the options value
     let selections = Math.floor(randomNumberGenerator(20)); // Generates x amount of possibilities to select from
-    for (let j = 0; j < selections; j++) { // Iterates through x amount of possibilities
+    for (let j = 0; j < selections; j += 1) { // Iterates through x amount of possibilities
       let possibleSelection = Math.floor((randomNumberGenerator(341)));
       optionSelection.push(randomWordsArray[possibleSelection]);
     }
@@ -101,7 +102,7 @@ let manufacturingTime = function () {
 let seedInventory = function () {
   // let count = 0;
   // function createInventory(){
-  for (let itemId = 1; itemId < 101; itemId++) {
+  for (let itemId = 1; itemId < 101; itemId += 1) {
     let newItem;
     newItem = new inventoryList({
       productId: itemId,
