@@ -1,19 +1,19 @@
-.price {
-    float:left;
-    padding-left: 50%;
-    padding: 0px 0px 0px 16px !important;
-    border: none;
-    vertical-align: middle;
-    height: 48px;
-    line-height: 48px;
-}
 
 
 #container {
   height: 1000px;
   width: 300px;
+  float: right;
+  margin-right: 10%;
 }
 
 select {
-  width: 200px;
+  width: 300px;
 }
+
+hr {
+  display: block;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+}
+

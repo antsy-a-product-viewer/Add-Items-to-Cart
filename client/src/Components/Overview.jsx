@@ -12,12 +12,18 @@ class Overview extends React.Component{
       exclusions: [],
       returnPolicy : [],
       returnOverview : [],
-      giftWrapping: []
+      giftWrapping: [],
+      getShippingCost: false,
+      shippingCost: [],
+      enteredShippingInfo: false,
+      zipCode : []
     }
     this.getOverview = this.getOverview.bind(this);
     this.getShippingInformation = this.getShippingInformation.bind(this);
     this.getReturnPolicy = this.getReturnPolicy.bind(this);
     this.getShippingInfo = this.getShippingInfo.bind(this);
+    this.showShipping = this.showShipping.bind(this)
+    this.shippingCost = this.shippingCost.bind(this);
   }
   
   componentDidMount(){
@@ -73,10 +79,32 @@ class Overview extends React.Component{
 
   getShippingInfo(){
     event.preventDefault();
-    console.log("get shipping info worked")
-    //Supposed to show new page with shipping information
+    this.setState({
+      getShippingCost: !this.state.getShippingCost
+    })
   }
-  //Need to conditionally display this overview statement
+
+  showShipping(){
+    event.preventDefault();
+  }
+  
+  shippingCost(){
+    let shippingCost = this.props.data[0]['shippingCosts'];
+    console.log(typeof event.target.value)
+    console.log(typeof parseInt(event.target.value))
+    console.log(event.target.value.length)
+    if (typeof parseInt(event.target.value) === 'number' && event.target.value.length === 5){
+      this.setState({
+        shippingCost: shippingCost,
+        enteredShippingInfo: true,
+        getShippingCost: !this.state.getShippingCost,
+        zipCode: event.target.value
+      })
+    console.log('this works')
+    }
+  }
+
+
   render(){
     return(
       <div>
@@ -87,23 +115,64 @@ class Overview extends React.Component{
             Overview 
             </div>
             <OverviewList overviews={this.state.overview}/>
-          </div> 
-        : null }
+            <br></br>
+           <hr></hr> </div>
+        : null }  
+       
+        
 
         <div className="shippingInformation">
           <div style={{fontWeight: 'bold'}}>
             Shipping & Returns
           </div>
+
+          {!this.state.enteredShippingInfo ?
+          <div>
           <div className="manufacturingTime" style={{fontWeight: 'bold'}}>
             Ready to ship in {this.state.shippingTime}-{this.state.shippingTime + 2} days
           </div>
           <div className="shippedFrom">
             From California
           </div>
-          <div className="shippingCost" style={{textDecorationLine: 'underline', cursor: "pointer"}} onClick={this.getShippingInfo}>
+          <div className="getShippingCost" style={{textDecorationLine: 'underline', cursor: "pointer"}} onClick={this.getShippingInfo}>
              Get Shipping Cost 
+          </div> </div> :
+
+          <div> 
+            <div className='deliver' style={{fontWeight: 'bold'}}>
+              Estimated delivery: Sep 10 - Sept 29
+            </div>
+            <div className="shippedFrom">
+              From California
+            </div>
+            <span className="shippingCost">
+              ${this.state.shippingCost} shipping to 
+            </span>      
+            <span className="shippingAddress" style={{textDecorationLine: 'underline'}}>
+              United States, {this.state.zipCode}
+            </span>      
           </div>
-        </div>
+          }
+
+          {this.state.getShippingCost ?
+          <form onSubmit={this.showShipping}>
+            <span>
+              United States, 
+            </span>
+            <span style={{float: "right"}}>
+              Zip or postal code <br></br>
+            <label>
+             <input onClick={this.shippingCost}
+                    id="shippingCost"
+                    type="text"
+                    value={this.state.value}
+              />
+            </label>
+            </span>
+          </form > : null}
+
+        </div> <br></br> <hr></hr>
+
 
         <div className="returnOverview">
           <div className="returns" style={{fontWeight: 'bold'}}>
@@ -114,7 +183,7 @@ class Overview extends React.Component{
             <span className="Return" style={{textDecorationLine: 'underline', cursor: "pointer"}}>
               {this.state.returnOverview} 
             </span>
-          </div>
+          </div> <br></br><br></br>
           <div className="giftwrappingOptions">
             {this.state.giftWrapping}
           </div>
