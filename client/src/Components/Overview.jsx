@@ -7,6 +7,7 @@ class Overview extends React.Component{
     super(props);
     this.state = {
       overview : [],
+      hasOverview: false,
       shippingTime: [],
       exclusions: [],
       returnPolicy : [],
@@ -25,61 +26,49 @@ class Overview extends React.Component{
     this.getReturnPolicy()
   }
   getOverview(){
-    var overviewBulletPoints;
-    return getItemSelection(this.props.randomItemNumber)
-      .then((data) => {
-        overviewBulletPoints = data[0]['overview']
-        console.log(overviewBulletPoints)
-        this.setState({
-          overview: overviewBulletPoints
-        })
-      })
-      .catch((err) => {
-        console.log(err, 'overview failed')
-      })
+    let overviewBulletPoints = [];
+    let overviewLength = false;
+    let overview = this.props.data[0]['overview']
+    console.log(overview)
+    if (overview.length > 0){
+      overviewLength = true;
+      overviewBulletPoints = overview
+    }
+    this.setState({
+      overview: overviewBulletPoints,
+      hasOverview: overviewLength
+    })
   }
 
   getShippingInformation(){
-    var manufacturingTime;
-    return getItemSelection(this.props.randomItemNumber)
-      .then((data) => {
-        manufacturingTime = data[0]['manufacturingTime'];
-        console.log(manufacturingTime, 'manufacturing time')
-        this.setState({
-          shippingTime: manufacturingTime
-        })
-      })
-      .catch((err) => {
-        console.log(err, 'failed to get shipping cost')
-      })
+    let manufacturingTime;
+    manufacturingTime = this.props.data[0]['manufacturingTime'];
+    console.log(manufacturingTime, 'manufacturing time')
+    this.setState({
+      shippingTime: manufacturingTime
+    })
   }
 
   getReturnPolicy(){
-    return getItemSelection(this.props.randomItemNumber)
-      .then((data) => {
-        var returnable;
-        var returnPolicy ="";
-        var exclusion;
-        var wrapping = "";
-        if (data[0]['availableToReturn']){
-          returnable = "Returns and exchanges accepted"
-          exclusion = "Exceptions may apply. "
-          returnPolicy ="See return policy"
-          wrapping = "Gift wrapping available"
-        } else{
-          returnable ="No returns or exchanges"
-          exclusion = "But please contact me if you have any problems with your order."
-        }
-        this.setState({
-          exclusions : exclusion,
-          returnPolicy : returnable,
-          returnOverview : returnPolicy,
-          giftWrapping : wrapping
-        })
-      })
-      .catch((err) => {
-        console.log(err, 'failed to get return policy')
-      })
+    var returnable;
+    var returnPolicy ="";
+    var exclusion;
+    var wrapping = "";
+    if (this.props.data[0]['availableToReturn']){
+      returnable = "Returns and exchanges accepted"
+      exclusion = "Exceptions may apply. "
+      returnPolicy ="See return policy"
+      wrapping = "Gift wrapping available"
+    } else{
+      returnable ="No returns or exchanges"
+      exclusion = "But please contact me if you have any problems with your order."
+    }
+    this.setState({
+      exclusions : exclusion,
+      returnPolicy : returnable,
+      returnOverview : returnPolicy,
+      giftWrapping : wrapping
+    })
   }
 
   getShippingInfo(){
@@ -91,12 +80,15 @@ class Overview extends React.Component{
   render(){
     return(
       <div>
-        <div className="OverallOverview" >
-          <div className="Overview" style={{fontWeight: 'bold'}}>
-          Overview 
-          </div>
-          <OverviewList overviews={this.state.overview}/>
-        </div>
+    
+        {this.state.hasOverview ?
+          <div className="OverallOverview" >
+            <div className="Overview" style={{fontWeight: 'bold'}}>
+            Overview 
+            </div>
+            <OverviewList overviews={this.state.overview}/>
+          </div> 
+        : null }
 
         <div className="shippingInformation">
           <div style={{fontWeight: 'bold'}}>

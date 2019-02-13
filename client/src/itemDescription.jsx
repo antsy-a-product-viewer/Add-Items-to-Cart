@@ -19,6 +19,8 @@ class ItemDescription extends React.Component {
       price: [],
       option: [],
       haveInCart: Math.floor(Math.random() * 10 + 1),
+      data : [],
+      stateChange : false
     };
     this.postingDescription = this.postingDescription.bind(this);
   }
@@ -41,7 +43,9 @@ class ItemDescription extends React.Component {
       console.log(res)
       this.setState ({
         description: res[0]['description'],
-        price: res[0]['price']
+        price: res[0]['price'],
+        data: res,
+        stateChange: true
       })
     })
   }
@@ -59,10 +63,10 @@ class ItemDescription extends React.Component {
         </div>
         <div>
           <button id="addToCart"> Add to Cart </button>
-          <div>This is currently in {this.state.haveInCart} carts </div>
+          <div>Other people want this. {this.state.haveInCart} people have this in their carts right now </div>
         </div>
         <div className="overview">          
-          <Overview randomItemNumber={this.state.randomItem}/> 
+          {this.state.stateChange ? <Overview data={this.state.data}/>  : null}
         </div>
       </div>
     );
@@ -70,3 +74,4 @@ class ItemDescription extends React.Component {
 }
 
 export default ItemDescription;
+
