@@ -7,6 +7,7 @@ class Overview extends React.Component{
     super(props);
     this.state = {
       overview : [],
+      hasOverview: false,
       shippingTime: [],
       exclusions: [],
       returnPolicy : [],
@@ -25,16 +26,22 @@ class Overview extends React.Component{
     this.getReturnPolicy()
   }
   getOverview(){
-    var overviewBulletPoints;
-    console.log(this.props.data, 'here is data')
-    overviewBulletPoints = this.props.data[0]['overview']
+    let overviewBulletPoints = [];
+    let overviewLength = false;
+    let overview = this.props.data[0]['overview']
+    console.log(overview)
+    if (overview.length > 0){
+      overviewLength = true;
+      overviewBulletPoints = overview
+    }
     this.setState({
-      overview: overviewBulletPoints
+      overview: overviewBulletPoints,
+      hasOverview: overviewLength
     })
   }
 
   getShippingInformation(){
-    var manufacturingTime;
+    let manufacturingTime;
     manufacturingTime = this.props.data[0]['manufacturingTime'];
     console.log(manufacturingTime, 'manufacturing time')
     this.setState({
@@ -73,12 +80,15 @@ class Overview extends React.Component{
   render(){
     return(
       <div>
-        <div className="OverallOverview" >
-          <div className="Overview" style={{fontWeight: 'bold'}}>
-          Overview 
-          </div>
-          <OverviewList overviews={this.state.overview}/>
-        </div>
+    
+        {this.state.hasOverview ?
+          <div className="OverallOverview" >
+            <div className="Overview" style={{fontWeight: 'bold'}}>
+            Overview 
+            </div>
+            <OverviewList overviews={this.state.overview}/>
+          </div> 
+        : null }
 
         <div className="shippingInformation">
           <div style={{fontWeight: 'bold'}}>
