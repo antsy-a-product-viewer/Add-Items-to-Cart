@@ -18,12 +18,6 @@ class Cart extends React.Component {
         <div id="description">
           <ItemDescription />
         </div>
-     
-        <div id="question" />
-        <div id="quantity" />
-        <div id="dropbar" />
-
-
       </div>
     );
   }
