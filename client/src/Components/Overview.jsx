@@ -26,60 +26,42 @@ class Overview extends React.Component{
   }
   getOverview(){
     var overviewBulletPoints;
-    return getItemSelection(this.props.randomItemNumber)
-      .then((data) => {
-        overviewBulletPoints = data[0]['overview']
-        console.log(overviewBulletPoints)
-        this.setState({
-          overview: overviewBulletPoints
-        })
-      })
-      .catch((err) => {
-        console.log(err, 'overview failed')
-      })
+    console.log(this.props.data, 'here is data')
+    overviewBulletPoints = this.props.data[0]['overview']
+    this.setState({
+      overview: overviewBulletPoints
+    })
   }
 
   getShippingInformation(){
     var manufacturingTime;
-    return getItemSelection(this.props.randomItemNumber)
-      .then((data) => {
-        manufacturingTime = data[0]['manufacturingTime'];
-        console.log(manufacturingTime, 'manufacturing time')
-        this.setState({
-          shippingTime: manufacturingTime
-        })
-      })
-      .catch((err) => {
-        console.log(err, 'failed to get shipping cost')
-      })
+    manufacturingTime = this.props.data[0]['manufacturingTime'];
+    console.log(manufacturingTime, 'manufacturing time')
+    this.setState({
+      shippingTime: manufacturingTime
+    })
   }
 
   getReturnPolicy(){
-    return getItemSelection(this.props.randomItemNumber)
-      .then((data) => {
-        var returnable;
-        var returnPolicy ="";
-        var exclusion;
-        var wrapping = "";
-        if (data[0]['availableToReturn']){
-          returnable = "Returns and exchanges accepted"
-          exclusion = "Exceptions may apply. "
-          returnPolicy ="See return policy"
-          wrapping = "Gift wrapping available"
-        } else{
-          returnable ="No returns or exchanges"
-          exclusion = "But please contact me if you have any problems with your order."
-        }
-        this.setState({
-          exclusions : exclusion,
-          returnPolicy : returnable,
-          returnOverview : returnPolicy,
-          giftWrapping : wrapping
-        })
-      })
-      .catch((err) => {
-        console.log(err, 'failed to get return policy')
-      })
+    var returnable;
+    var returnPolicy ="";
+    var exclusion;
+    var wrapping = "";
+    if (this.props.data[0]['availableToReturn']){
+      returnable = "Returns and exchanges accepted"
+      exclusion = "Exceptions may apply. "
+      returnPolicy ="See return policy"
+      wrapping = "Gift wrapping available"
+    } else{
+      returnable ="No returns or exchanges"
+      exclusion = "But please contact me if you have any problems with your order."
+    }
+    this.setState({
+      exclusions : exclusion,
+      returnPolicy : returnable,
+      returnOverview : returnPolicy,
+      giftWrapping : wrapping
+    })
   }
 
   getShippingInfo(){
