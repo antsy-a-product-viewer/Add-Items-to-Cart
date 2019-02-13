@@ -1,82 +1,97 @@
 import React from 'react';
 import getItemSelection from './clientGetReq.js'
 import SelectionListPossibilities from './selectionListPossibilities.jsx'
+import Overview from './Overview.jsx'
 
 
 class SelectionList extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      stateChange : false,
+      itemInformation : [],
       selectionPossibilties : [],
       optionPossibilities : []
     }
-    this.getSelectValue = this.getSelectValue.bind(this);
-    this.getOptionsValue = this.getOptionsValue.bind(this);
+    this.getItemInformation = this.getItemInformation.bind(this);
+    // this.getSelectValue = this.getSelectValue.bind(this);
+    // this.getOptionsValue = this.getOptionsValue.bind(this);
   }
 
   componentDidMount() {
-    this.getSelectValue();
-    this.getOptionsValue();
+    this.getItemInformation();
+    console.log("his came firs")
+
   }
 
-
-  getSelectValue(){
-    var selection = [];
+  getItemInformation(){
     return getItemSelection(this.props.randomItemNumber)
       .then((data) => {
-        if (data[0]['options']){
-          var itemHasSelection = data[0]['options']
-          for (var keys in itemHasSelection){
-            selection.push(keys)
-          }
+        var itemInfo = {};
+        var stateChanged = false;
+        if (data[0].options){
+          itemInfo = data[0].options
+          stateChanged = true;
         }
-          console.log(this.state.selectionPossibilties, 'possibilities')
-        console.log(selection, 'selection getting caught')
-        // return selection;
-          this.setState({
-            selectionPossibilties : selection
-          })
-      })
-      .catch((err) => {
-        console.log(err, 'failed promise')
-      })
-    }
-
-  getOptionsValue(){
-    var options = [];
-    return getItemSelection(this.props.randomItemNumber)
-      .then((data) => {
-        console.log(data, 'data from options value')
-        if (data[0]['options']){
-          for (var key in data[0]['options']){
-            var individualOptions = [];
-            for (let i = 0; i < data[0]['options'][key].length; i++){
-              individualOptions.push(data[0]['options'][key][i]);
-            }
-            options.push(individualOptions);
-            console.log(options, 'options value')
-          }
-        }
-        this.setState ({
-          optionPossibilities : options
+        this.setState({
+          itemInformation : itemInfo,
+          stateChange: stateChanged
         })
       })
       .catch((err) => {
-        console.log(err, "failed to get options")
-      })
+        console.log(err, 'failed promise')
+      })      
   }
+
+
 
   render(){
     return(
-    <div className = "selectionList"> 
-      <SelectionListPossibilities 
-        selections={this.state.selectionPossibilties}
-        optionList={this.state.optionPossibilities}
-      />
-    </div> 
+      <div className = "selectionList"> 
+        {this.state.stateChange ? <SelectionListPossibilities selection={this.state.itemInformation}/> : null }
+        
+      </div> 
+
     )
   }
 }
 
 
 export default SelectionList
+
+
+// {<SelectionListPossibilities 
+//   selections={this.state.selectionPossibilties}
+//   optionList={this.state.optionPossibilities}
+// />}
+
+  // getSelectValue(){
+  //   var selection = [];
+  //   let data = this.state.itemInformation;
+  //   if (data[0]['options']){
+  //     var itemHasSelection = data[0]['options']
+  //     for (var keys in itemHasSelection){
+  //       selection.push(keys)
+  //     }
+  //   }
+  //   this.setState({
+  //     selectionPossibilties : selection
+  //   })
+  // }
+
+
+  // getOptionsValue(){
+  //   var allOptions = [];
+  //   var option;
+  //   let data = this.state.itemInformation;
+  //   if (data[0]['options']){
+  //     option = data[0]['options']
+  //     for (var key in option){
+  //       allOptions.push(option[key]);
+  //     }
+  //     console.log(allOptions, 'all options')
+  //   }
+  //   this.setState ({
+  //     optionPossibilities : allOptions
+  //   })
+  // }

@@ -1,20 +1,18 @@
 import React from 'react';
 import SelectionListEntries from './SelectionListEntries.jsx';
+import OptionList from './OptionList.jsx';
 
 const SelectionListPossibilities = (props) => {
+
   return (
     <div>
-      {props.selections.map(selection => {
+      {console.log(Object.values(props.selection), 'props selection')}
+      {Object.keys(props.selection).map((selection) => {
         return <SelectionListEntries selection={selection}/>
       })}
-      <select>
-
-      {props.optionList.map(options => {
-        return options.map(option => {
-          return <option>{option}</option> 
-        })
+      {Object.values(props.selection).map((options) =>{
+        return <OptionList options={options}/>
       })}
-      </select>
     </div>
   )
 }

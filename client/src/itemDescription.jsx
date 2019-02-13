@@ -50,7 +50,7 @@ class ItemDescription extends React.Component {
     return (
       <div>
         <div>{this.state.description }</div>
-        <div className="price"> ${this.state.price} </div>
+        <div className="price" style={{fontWeight: 'bold'}}> ${this.state.price} </div>
         <div className="price">
           <button> Ask A Question </button>
         </div>

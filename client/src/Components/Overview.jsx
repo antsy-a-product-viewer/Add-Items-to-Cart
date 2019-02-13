@@ -8,6 +8,7 @@ class Overview extends React.Component{
     this.state = {
       overview : [],
       shippingTime: [],
+      exclusions: [],
       returnPolicy : [],
       returnOverview : [],
       giftWrapping: []
@@ -57,17 +58,20 @@ class Overview extends React.Component{
     return getItemSelection(this.props.randomItemNumber)
       .then((data) => {
         var returnable;
-        var returnPolicy;
+        var returnPolicy ="";
+        var exclusion;
         var wrapping = "";
         if (data[0]['availableToReturn']){
           returnable = "Returns and exchanges accepted"
-          returnPolicy ="Exceptions may apply. See return policy"
+          exclusion = "Exceptions may apply. "
+          returnPolicy ="See return policy"
           wrapping = "Gift wrapping available"
         } else{
           returnable ="No returns or exchanges"
-          returnPolicy = "But please contact me if you have any problems with your order."
+          exclusion = "But please contact me if you have any problems with your order."
         }
         this.setState({
+          exclusions : exclusion,
           returnPolicy : returnable,
           returnOverview : returnPolicy,
           giftWrapping : wrapping
@@ -109,12 +113,15 @@ class Overview extends React.Component{
           </div>
         </div>
 
-        <div className="returnPolicy">
+        <div className="returnOverview">
           <div className="returns" style={{fontWeight: 'bold'}}>
             {this.state.returnPolicy}
           </div>
           <div className="returnPolicy">
-            {this.state.returnOverview}
+            <span>{this.state.exclusions}</span>
+            <span className="Return" style={{textDecorationLine: 'underline', cursor: "pointer"}}>
+              {this.state.returnOverview} 
+            </span>
           </div>
           <div className="giftwrappingOptions">
             {this.state.giftWrapping}
