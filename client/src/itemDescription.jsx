@@ -4,10 +4,8 @@
 /* eslint-disable eol-last */
 /* eslint-disable no-useless-constructor */
 import React from 'react';
-import ReactDOM from 'react-dom';
 import SelectionList from './Components/SelectionList.jsx'
 import Overview from './Components/Overview.jsx'
-
 
 
 class ItemDescription extends React.Component {
@@ -21,10 +19,13 @@ class ItemDescription extends React.Component {
       haveInCart: Math.floor(Math.random() * 10 + 1),
       data : [],
       stateChange : false,
-      quantity : []
+      quantity : [],
+      stock: [],
+      highStock: []
     };
     this.postingDescription = this.postingDescription.bind(this);
     this.addedToCart = this.addedToCart.bind(this);
+    this.askQuestion = this.askQuestion.bind(this);
   }
 
   // Need to write a function that sends a get request to the server to get the description for the fxn
@@ -48,7 +49,17 @@ class ItemDescription extends React.Component {
         description: res[0]['description'],
         price: res[0]['price'],
         data: res,
-        stateChange: true
+        stateChange: true,
+        stock: Math.floor(res[0]['quantityInStock'])
+      })
+    })
+    .then(() => {
+      let stockCount = true;
+      if (this.state.stock <= 5){
+        stockCount = false;
+      }
+       this.setState({
+        highStock: stockCount
       })
     })
   }
@@ -70,21 +81,27 @@ class ItemDescription extends React.Component {
     })
   }
 
+  askQuestion(){
+    event.preventDefault();
+    alert("What is your question?")
+  }
+
+
   render() {
 
 
     return (
       <div>
-        <div style={{fontWeight: 'bold', fontsize: "18px"}}>{this.state.description }</div> <br></br>
+        <div style={{fontWeight: 'bold', fontSize: "24px"}}>{this.state.description }</div> <br></br>
         <div>
-        <span className="price" style={{fontWeight: 'bold', fontSize: "18px"}}> ${this.state.price} </span>
+        <span className="price" style={{fontWeight: 'bold', fontSize: "24px"}}> ${this.state.price} </span>
         <span className="question">
-          <button style={{cursor: "pointer", float: "right", width: "100px", height: "18px"}}> Ask A Question </button>
+          <button style={{cursor: "pointer", float: "right", width: "120px", height: "24px", backgroundColor: "white", fontWeight: 'bold'}} onClick={this.askQuestion}> Ask A Question </button>
         </span>
         </div>
         <div className="optionNames">          
           {this.state.stateChange ? <SelectionList data={this.state.data}/> : null}
-        </div>
+        </div> <br></br>
 
         {this.state.stateChange ? <div className="quantity">
           Quantity 
@@ -98,12 +115,19 @@ class ItemDescription extends React.Component {
 
         <div>
           <div id="addToCard" onClick={this.addedToCart} >
-            <button id="addToCart" style={{cursor: "pointer", width: "300px", height: "30px"}}> Add to Cart </button>
+            <button id="addToCart" style={{cursor: "pointer", width: "390px", height: "35px", color: "white", backgroundColor: "#222222", fontSize: "16px"}}> Add to Cart </button>
           </div>
-          <div>
-            <span style={{fontWeight: "bold"}}>Other people want this. </span>
-            <span> {this.state.haveInCart} people have this in their carts right now </span>
-          </div> 
+
+          {this.state.highStock ?
+            <div>
+              <span style={{fontWeight: "bold"}}>Other people want this. </span>
+              <span> {this.state.haveInCart} people have this in their carts right now </span>
+            </div> 
+          : <div>
+              <span style={{fontWeight: "bold"}}>Almost gone. </span>
+              <span>There's only {this.state.stock} left.</span>
+            </div>
+          }
         </div> <br></br>
 
         <hr></hr>

@@ -149,7 +149,7 @@ class Overview extends React.Component{
               ${this.state.shippingCost} shipping to 
             </span>      
             <span className="shippingAddress" style={{textDecorationLine: 'underline'}}>
-              United States, {this.state.zipCode}
+               United States, {this.state.zipCode}
             </span>      
           </div>
           }
@@ -187,7 +187,7 @@ class Overview extends React.Component{
           <div className="giftwrappingOptions">
             {this.state.giftWrapping}
           </div>
-        </div>
+        </div> <hr></hr>
       </div>
     )
   }
