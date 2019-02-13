@@ -3,9 +3,7 @@ import React from 'react';
 class SelectionListEntries extends React.Component {
   constructor(props){
     super(props);
-  }
-  componentDidMount(){
-    console.log(this.props.selection)
+
   }
 
   render() {

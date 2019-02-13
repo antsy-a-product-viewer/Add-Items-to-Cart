@@ -6,6 +6,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SelectionList from './Components/SelectionList.jsx'
+import Overview from './Components/Overview.jsx'
+
 
 
 class ItemDescription extends React.Component {
@@ -15,7 +17,8 @@ class ItemDescription extends React.Component {
       randomItem: Math.floor(Math.random() * 100 + 1), //Gets a random item from the database
       description: [],
       price: [],
-      option: []
+      option: [],
+      haveInCart: Math.floor(Math.random() * 10 + 1),
     };
     this.postingDescription = this.postingDescription.bind(this);
   }
@@ -47,17 +50,19 @@ class ItemDescription extends React.Component {
     return (
       <div>
         <div>{this.state.description }</div>
-        <div className="price"> ${this.state.price} </div>
+        <div className="price" style={{fontWeight: 'bold'}}> ${this.state.price} </div>
         <div className="price">
           <button> Ask A Question </button>
         </div>
-        {/* <div className="option">{this.state.option} </div> */}
-        <div className="optionNames"> 
-         
+        <div className="optionNames">          
           <SelectionList randomItemNumber={this.state.randomItem}/> 
         </div>
         <div>
           <button id="addToCart"> Add to Cart </button>
+          <div>This is currently in {this.state.haveInCart} carts </div>
+        </div>
+        <div className="overview">          
+          <Overview randomItemNumber={this.state.randomItem}/> 
         </div>
       </div>
     );
