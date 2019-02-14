@@ -129,11 +129,11 @@ let seedInventory = function () {
     let newItem;
     newItem = new inventoryList({
       productId: itemId,
-      price: randomNumberGenerator(100),
+      price: (randomNumberGenerator(100) + 1),
       description: randomDescription(),
       overview: randomOverview(),
       options: randomOptions(), // Let's me create an obj
-      quantityInStock: Math.floor(randomNumberGenerator(100)),
+      quantityInStock: Math.floor(randomNumberGenerator(100) + 1),
       availableToReturn: itemCanReturn(),
       shippingCosts: shippingCost(),
       manufacturingTime: manufacturingTime(),
