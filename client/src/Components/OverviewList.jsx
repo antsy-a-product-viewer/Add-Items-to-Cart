@@ -1,14 +1,10 @@
 import React from 'react';
-import OverviewListEntry from './OverviewListEntry.jsx'
+import OverviewListEntry from './OverviewListEntry.jsx';
 
-const OverviewList = (props) => {
-  return (
-    <div >
-      {props.overviews.map(overview => {
-        return <OverviewListEntry overview={overview}/>
-      })}
-    </div>
-  )
-}
+const OverviewList = props => (
+  <div>
+    {props.overviews.map(overview => <OverviewListEntry overview={overview} />)}
+  </div>
+);
 
-export default OverviewList
+export default OverviewList;

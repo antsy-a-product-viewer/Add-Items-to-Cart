@@ -29,31 +29,31 @@ const inventoryList = mongoose.model('inventoryList', inventorySchema);
 
 const randomWords = 'Spicy jalapeno bacon ipsum dolor amet salami cupidatat fugiat drumstick magna et tenderloin exercitation leberkas picanha consequat Dolore tempor prosciutto biltong incididunt fugiat pork loin laboris picanha shankle corned beef tongue Magna dolore andouille short loin pork loin deserunt incididunt consequat pastrami porchetta Velit fugiat et consequat bacon tail nisi picanha short ribs ipsum pancetta eu Mollit chuck deserunt swine magna alcatra spare ribs picanha Meatball andouille short loin corned beef t-bone jowl voluptate turkey filet mignon do flank sausage veniam prosciuttoCupidatat corned beef nisi drumstick mollit elit laboris fatback ullamco filet mignon turducken aute bresaola Ut tri-tip consequat cupidatat turkey dolor consectetur meatball Incididunt rump dolore aliquip hamburger Nulla aliquip turducken in in quis aute Andouille velit buffalo elit chicken labore in shankle ribeyePorchetta veniam dolore ball tip pariatur alcatra boudin corned beef landjaeger incididunt id filet mignon in cow tail Proident nulla cillum salami exercitation boudin ea in brisket tempor elit Shoulder tri-tip incididunt non nulla pork exercitation id quis porchetta aliqua Tenderloin sunt irure cillum sausage incididunt qui Picanha non bacon in elit filet mignon pig tri-tip ut Excepteur flank officia in in Ipsum cupim aliquip est laborum minim aute aliqua do boudin occaecat sirloinKielbasa meatloaf pork chop landjaeger flank chicken Ut sirloin reprehenderit meatball t-bone in Doner tail short ribs duis nostrud cupidatat cow pig deserunt turducken sausage Reprehenderit ut pork sausage tail venison andouille incididunt Beef ribs kevin officia corned beef ribeye buffalo chicken nulla id pastrami porchetta dolor landjaeger fugiat aliqua Beef ut pork swine tongue meatball corned beef in nisi ea dolore Ham hock t-bone id boudin short loin consectetur elit enim eaIn cupidatat consequat fatback dolore short loin id lorem pastrami aute proident ut picanha capicola strip steak Sed sunt meatloaf mollit sirloin strip steak do lorem In meatball occaecat landjaeger flank pariatur in chuck leberkas Porchetta quis laborum duis picanha commodo proident magna cupidatat turducken excepteur doner adipisicing sausage Pork loin pork chop flank consequat sint turkey Pastrami brisket doner capicola pork belly reprehenderit shoulder kevin boudin pork et tongue sirloin esse';
 
-const randomCountries = 'China, Wales, Belgium, Japan, France, America, Germany, Canada, Spain, Brazil, South Africa, Belgium, India, Mexico, Argentina, Ethiopia, Jamaica, Brazil, Sweden, Denmark, Switzerland, Ghana, Bangladesh, Switzerland, Nigeria, Sri Lanka, Ireland, Italy, Niger, Sudan, Italy, Argentina, Pakistan, Cuba, North Korea'
+const randomCountries = 'China, Wales, Belgium, Japan, France, America, Germany, Canada, Spain, Brazil, South Africa, Belgium, India, Mexico, Argentina, Ethiopia, Jamaica, Brazil, Sweden, Denmark, Switzerland, Ghana, Bangladesh, Switzerland, Nigeria, Sri Lanka, Ireland, Italy, Niger, Sudan, Italy, Argentina, Pakistan, Cuba, North Korea';
 
-const months = ['Jan', "Feb", "Mar", "Apr", "Jul", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Jul', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
 let randomNumberGenerator = function (number) {
   return parseFloat((Math.random() * number).toFixed(2));
 };
 
-let deliveryDate = function(){
+let deliveryDate = function () {
   let randomMonth = [];
-  let randomIndex = Math.floor(randomNumberGenerator(11))
+  let randomIndex = Math.floor(randomNumberGenerator(11));
   randomMonth.push(months[randomIndex]);
   randomMonth.push(months[randomIndex]);
-  return randomMonth
-}
+  return randomMonth;
+};
 
-let shippingCountry = function(){
-  let countries = randomCountries.split(',')
+let shippingCountry = function () {
+  let countries = randomCountries.split(',');
   let randomIndex = Math.floor(randomNumberGenerator(10));
   return `${countries[randomIndex]}`;
-}
+};
 
-let shippingTo = function(){
-  return randomCountries.split(',')
-}
+let shippingTo = function () {
+  return randomCountries.split(',');
+};
 
 let shippingCost = function () {
   return Math.floor(randomNumberGenerator(4) + 1) + 0.99;
@@ -137,9 +137,9 @@ let seedInventory = function () {
       availableToReturn: itemCanReturn(),
       shippingCosts: shippingCost(),
       manufacturingTime: manufacturingTime(),
-      shippingFrom : shippingCountry(),
-      shippingTo : shippingTo(),
-      deliveryDate : deliveryDate()
+      shippingFrom: shippingCountry(),
+      shippingTo: shippingTo(),
+      deliveryDate: deliveryDate()
     });
     newItem.save((err, itemId) => { // Change to update and use upsert
       if (err) {

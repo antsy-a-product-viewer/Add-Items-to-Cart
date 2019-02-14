@@ -1,65 +1,56 @@
 import React from 'react';
-import OverviewList from './OverviewList.jsx'
+import OverviewList from './OverviewList.jsx';
 
-class Overview extends React.Component{
-  constructor(props){
+class Overview extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
-      overview : [],
+      overview: [],
       hasOverview: false,
-      shippingTime: [],
-      exclusions: [],
-      returnPolicy : [],
-      returnOverview : [],
-      giftWrapping: [],
-      getShippingCost: false,
-      shippingCost: [],
-      enteredShippingInfo: false,
-      zipCode : [],
-      shippingFrom: [],
-      shippingTo: [],
-      shippingToCountry: [],
-      deliveryDate : []
-    }
+    };
     this.getOverview = this.getOverview.bind(this);
   }
-  
-  componentDidMount(){
+
+  componentDidMount() {
     this.getOverview();
   }
-  getOverview(){
+
+  getOverview() {
     let overviewBulletPoints = [];
     let overviewLength = false;
-    let overview = this.props.data[0]['overview']
-    console.log(overview)
-    if (overview.length > 0){
+    const overview = this.props.data[0].overview;
+    if (overview.length > 0) {
       overviewLength = true;
-      overviewBulletPoints = overview
+      overviewBulletPoints = overview;
     }
     this.setState({
       overview: overviewBulletPoints,
-      hasOverview: overviewLength
-    })
+      hasOverview: overviewLength,
+    });
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div>
-    
-        {this.state.hasOverview ?
-          <div className="OverallOverview" >
-            <div className="Overview" style={{fontWeight: 'bold'}}>
-            Overview 
+
+        {this.state.hasOverview
+          ? (
+            <div className="OverallOverview">
+              <div className="Overview" style={{ fontWeight: 'bold' }}>
+            Overview
+              </div>
+              <OverviewList overviews={this.state.overview} />
+              <br />
+              <hr />
+              {' '}
             </div>
-            <OverviewList overviews={this.state.overview}/>
-            <br></br>
-           <hr></hr> </div>
-        : null }  
-       
+          )
+          : null }
+
       </div>
-    )
+    );
   }
 }
 
 
-export default Overview
+export default Overview;
