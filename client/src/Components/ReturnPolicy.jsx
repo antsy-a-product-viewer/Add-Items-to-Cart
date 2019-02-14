@@ -96,7 +96,6 @@ class ReturnPolicy extends React.Component{
               isOpen={this.state.returnPolicyShown}
               onRequestClose={this.closeReturnPolicy}
               style={customStyles}
-              contentLabel="Example"
             >
           <div className="modalContainer" style={{width: "400px", height: "100px"}}>
             <h1>Returns & Exchanges</h1>

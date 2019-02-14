@@ -117,6 +117,25 @@ class ItemDescription extends React.Component {
         <span className="price" style={{fontWeight: 'bold', fontSize: "24px"}}> ${this.state.price} </span>
         <span className="question">
           <button style={{cursor: "pointer", float: "right", width: "120px", height: "24px", backgroundColor: "white", fontWeight: 'bold'}} onClick={this.openAskQuestion}> Ask A Question </button>
+          <Modal
+            isOpen={this.state.askedQuestion}
+            onRequestClose={this.closeAskQuestion}
+            style={customStyles}>
+          <div style={{width:"500px", height: "500px"}}>
+            <h1>New conversation</h1>
+            <p>with Kuribo from CoconutStudios</p>
+            {this.state.stateChange ? <form>
+              {this.state.description}, listing # {this.state.randomItem}
+              <input type="text" style={{width: "500px", height: "200px", wordWrap: "break-word"}}/> 
+              <button onClick={this.closeAskQuestion} style={{float: "right", height: "40px", width: "70px", fontSize: "18px", backgroundColor: "white"}} 
+              >Cancel</button>
+              <button onClick={this.closeAskQuestion} style={{float: "right", height: "40px", width: "70px", fontSize: "18px", backgroundColor: "black", color: "white"}} 
+              >Send</button>
+            </form> : null}
+          </div>
+          </Modal>
+
+
         </span>
         </div>
         <div className="optionNames">          
