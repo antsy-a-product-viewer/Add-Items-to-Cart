@@ -6,6 +6,7 @@
 import React from 'react';
 import SelectionList from './Components/SelectionList.jsx'
 import Overview from './Components/Overview.jsx'
+import ShippingInformation from './Components/ShippingInformation.jsx'
 
 
 class ItemDescription extends React.Component {
@@ -50,7 +51,7 @@ class ItemDescription extends React.Component {
         price: res[0]['price'],
         data: res,
         stateChange: true,
-        stock: Math.floor(res[0]['quantityInStock'])
+        stock: res[0]['quantityInStock']
       })
     })
     .then(() => {
@@ -134,6 +135,10 @@ class ItemDescription extends React.Component {
 
         <div className="overview">          
           {this.state.stateChange ? <Overview data={this.state.data}/>  : null}
+        </div>
+
+        <div classna="ShippingInfo">
+          {this.state.stateChange ? <ShippingInformation data={this.state.data}/> : null }
         </div>
 
       </div>
