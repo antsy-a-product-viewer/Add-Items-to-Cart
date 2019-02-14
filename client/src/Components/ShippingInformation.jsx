@@ -1,5 +1,7 @@
 import React from 'react';
 
+
+
 class ShippingInformation extends React.Component{
   constructor(props){
     super(props)
@@ -16,20 +18,20 @@ class ShippingInformation extends React.Component{
       shippingFrom: [],
       shippingTo: [],
       shippingToCountry: "China",
-      deliveryDate : []
+      deliveryDate : [],
+      showModal: false
     }
     this.getShippingInformation = this.getShippingInformation.bind(this);
-    this.getReturnPolicy = this.getReturnPolicy.bind(this);
     this.getShippingInfo = this.getShippingInfo.bind(this);
     this.showShipping = this.showShipping.bind(this);
     this.shippingCost = this.shippingCost.bind(this);
-    this.shippingToCountry = this.shippingToCountry.bind(this);    
+    this.shippingToCountry = this.shippingToCountry.bind(this);   
+
   }
 
 
   componentDidMount(){
     this.getShippingInformation()
-    this.getReturnPolicy()      
   }
   getShippingInformation(){
     let manufacturingTime;
@@ -42,28 +44,6 @@ class ShippingInformation extends React.Component{
       shippingFrom: shippingFrom,
       shippingTo: shippingTo,
       deliveryDate : deliveryDate
-    })
-  }
-
-  getReturnPolicy(){
-    var returnable;
-    var returnPolicy ="";
-    var exclusion;
-    var wrapping = "";
-    if (this.props.data[0]['availableToReturn']){
-      returnable = "Returns and exchanges accepted"
-      exclusion = "Exceptions may apply. "
-      returnPolicy ="See return policy"
-      wrapping = "Gift wrapping available"
-    } else{
-      returnable ="No returns or exchanges"
-      exclusion = "But please contact me if you have any problems with your order."
-    }
-    this.setState({
-      exclusions : exclusion,
-      returnPolicy : returnable,
-      returnOverview : returnPolicy,
-      giftWrapping : wrapping
     })
   }
 
@@ -162,23 +142,7 @@ class ShippingInformation extends React.Component{
           </form > : null}
 
         </div> <br></br> <br></br> <hr></hr>
-
-
-        <div className="returnOverview">
-          <div className="returns" style={{fontWeight: 'bold'}}>
-            {this.state.returnPolicy}
-          </div>
-          <div className="returnPolicy">
-            <span>{this.state.exclusions}</span>
-            <span className="Return" style={{textDecorationLine: 'underline', cursor: "pointer"}}>
-              {this.state.returnOverview} 
-            </span>
-          </div> <br></br><br></br>
-          <div className="giftwrappingOptions">
-            {this.state.giftWrapping}
-          </div>
-        </div> <hr></hr>
-    </div> 
+    </div>  
     )
   }
 }

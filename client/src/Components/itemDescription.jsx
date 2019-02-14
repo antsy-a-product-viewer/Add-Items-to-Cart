@@ -7,6 +7,19 @@ import React from 'react';
 import SelectionList from './SelectionList.jsx'
 import Overview from './Overview.jsx'
 import ShippingInformation from './ShippingInformation.jsx'
+import ReturnPolicy from './ReturnPolicy.jsx'
+import Modal from 'react-modal'
+
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 
 
 class ItemDescription extends React.Component {
@@ -22,15 +35,19 @@ class ItemDescription extends React.Component {
       stateChange : false,
       quantity : [],
       stock: [],
-      highStock: []
+      highStock: [],
+      askedQuestion: false
     };
     this.postingDescription = this.postingDescription.bind(this);
     this.addedToCart = this.addedToCart.bind(this);
-    this.askQuestion = this.askQuestion.bind(this);
+    this.openAskQuestion = this.openAskQuestion.bind(this);
+    this.closeAskQuestion = this.closeAskQuestion.bind(this);
   }
 
   // Need to write a function that sends a get request to the server to get the description for the fxn
   // eslint-disable-next-line class-methods-use-this
+
+  
 
   componentDidMount() {
     this.findQuantity();
@@ -77,17 +94,18 @@ class ItemDescription extends React.Component {
     for (var i = 0; i < randomQuantity; i++){
       quantity.push(i);
     }
-    console.log(quantity, 'this is quantity')
     this.setState({
       quantity: quantity
     })
   }
 
-  askQuestion(){
-    event.preventDefault();
-    alert("What is your question?")
+  openAskQuestion(){
+    this.setState({askedQuestion: true});
   }
 
+  closeAskQuestion(){
+    this.setState({askedQuestion: false});
+  }
 
   render() {
 
@@ -98,7 +116,7 @@ class ItemDescription extends React.Component {
         <div>
         <span className="price" style={{fontWeight: 'bold', fontSize: "24px"}}> ${this.state.price} </span>
         <span className="question">
-          <button style={{cursor: "pointer", float: "right", width: "120px", height: "24px", backgroundColor: "white", fontWeight: 'bold'}} onClick={this.askQuestion}> Ask A Question </button>
+          <button style={{cursor: "pointer", float: "right", width: "120px", height: "24px", backgroundColor: "white", fontWeight: 'bold'}} onClick={this.openAskQuestion}> Ask A Question </button>
         </span>
         </div>
         <div className="optionNames">          
@@ -149,10 +167,12 @@ class ItemDescription extends React.Component {
           {this.state.stateChange ? <Overview data={this.state.data}/>  : null}
         </div>
 
-        <div classna="ShippingInfo">
+        <div className="ShippingInfo">
           {this.state.stateChange ? <ShippingInformation data={this.state.data}/> : null }
         </div>
-
+        <div className="ReturnPolicy">
+          {this.state.stateChange ? <ReturnPolicy data={this.state.data}/> : null}
+        </div>
       </div>
     );
   }
