@@ -29,12 +29,12 @@ class SelectionListEntries extends React.Component {
         </div>
         {this.state.optionsPassedDown ? 
           <div>
-              <select className="selectOptions" style={{height: "30px", background: 'white'}}>
-                {this.props.options.map((option) => { 
-                  return <option >{option}</option> 
-                })} 
-              </select>         
-          </div>
+            <select className="selectOptions" style={{height: "30px", background: 'white'}}>
+              {this.props.options.map((option) => { 
+                return  <option >{option}</option>  
+              })} 
+            </select> <br></br>   <br></br>         
+          </div> 
           : null
         }
       </div>

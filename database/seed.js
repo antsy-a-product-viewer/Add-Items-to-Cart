@@ -63,7 +63,7 @@ let shippingCost = function () {
 let randomPhraseGenerator = function () {
   let randomWordsArray = randomWords.split(' ');
   let returnedRandomString = '';
-  let randomLength = Math.floor((randomNumberGenerator(20))); // Generates a random number between 0 - 20
+  let randomLength = Math.floor((randomNumberGenerator(20) + 1)); // Generates a random number between 0 - 20
   let randomWord = Math.floor((randomNumberGenerator(341)));
   for (let i = 0; i < randomLength; i += 1) {
     // eslint-disable-next-line no-shadow

@@ -15,7 +15,7 @@ class ShippingInformation extends React.Component{
       zipCode : [],
       shippingFrom: [],
       shippingTo: [],
-      shippingToCountry: [],
+      shippingToCountry: "China",
       deliveryDate : []
     }
     this.getShippingInformation = this.getShippingInformation.bind(this);
@@ -118,7 +118,7 @@ class ShippingInformation extends React.Component{
 
         <div> 
           <div className='deliver' style={{fontWeight: 'bold'}}>
-            Estimated delivery: {this.state.deliveryDate[0]} 4 - {this.state.deliveryDate[1]} 7
+            Estimated delivery: {this.state.deliveryDate[0]} {this.state.shippingTime + 2} - {this.state.deliveryDate[1]} {this.state.shippingTime + 7}
           </div>
           <div className="shippedFrom">
             From {this.state.shippingFrom}
