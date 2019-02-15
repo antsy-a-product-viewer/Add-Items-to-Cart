@@ -5,6 +5,10 @@ import Overview from './Overview.jsx';
 import ShippingInformation from './ShippingInformation.jsx';
 import ReturnPolicy from './ReturnPolicy.jsx';
 
+
+
+// Modal.setAppElement('#store');
+
 const customStyles = {
   content: {
     top: '50%',
@@ -21,7 +25,7 @@ class ItemDescription extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      randomItem: Math.floor(Math.random() * 100 + 1), // Gets a random item from the database
+      randomItem: Math.floor(Math.random() * 100 + 1), 
       description: [],
       price: [],
       option: [],
@@ -46,6 +50,7 @@ class ItemDescription extends React.Component {
 
 
   postingDescription() {
+    console.log(window.location.pathname, 'this is pathname')
     fetch(`/checkout/${this.state.randomItem}`)
       .then(res => res.json())
       .then((res) => {
@@ -63,14 +68,16 @@ class ItemDescription extends React.Component {
         if (this.state.stock <= 10) {
           stockCount = false;
         }
-        console.log(this.state.stock);
         this.setState({
           highStock: stockCount
         });
-      });
+      })
+      .catch((err) => {
+        return;
+      })
   }
 
-  addedToCart() {
+  addedToCart(event) {
     event.preventDefault();
     alert('Continue to checkout');
   }
@@ -97,7 +104,7 @@ class ItemDescription extends React.Component {
   render() {
     return (
       <div>
-        <div style={{ fontWeight: 'bold', fontSize: '24px' }}>{this.state.description }</div>
+        <div className="description" style={{ fontWeight: 'bold', fontSize: '24px' }}>{this.state.description }</div>
         {' '}
         <br />
         <div style={{marginBottom: '18px'}}>
@@ -109,6 +116,7 @@ $
           </span>
           <span className="question">
             <button
+              className="askQuestion"
               style={{
                 cursor: 'pointer', float: 'right', width: '120px', height: '24px', backgroundColor: 'white', fontWeight: 'bold'
               }}
@@ -124,7 +132,7 @@ Ask A Question
               onRequestClose={this.closeAskQuestion}
               style={customStyles}
             >
-              <div style={{ width: '500px', height: '500px' }}>
+              <div className="questionsModal" style={{ width: '500px', height: '500px' }}>
                 <h1>New conversation</h1>
                 <p>with Kuribo from CoconutStudios</p>
                 {this.state.stateChange ? (
@@ -177,9 +185,10 @@ Send
         }
 
         <div>
-          <div id="addToCard" onClick={this.addedToCart}>
+          <div id="addToCard">
             <button
-              id="addToCart"
+              onClick={this.addedToCart}
+              className="addToCart"
               style={{
                 cursor: 'pointer', width: '390px', height: '35px', color: 'white', backgroundColor: '#222222', fontSize: '16px'
               }}
