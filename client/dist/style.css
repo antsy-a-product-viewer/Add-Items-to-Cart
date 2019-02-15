@@ -2,13 +2,13 @@
 
 #container {
   height: 1000px;
-  width: 300px;
+  width: 390px;
   float: right;
   margin-right: 10%;
 }
 
 select {
-  width: 300px;
+  width: 390px;
 }
 
 hr {

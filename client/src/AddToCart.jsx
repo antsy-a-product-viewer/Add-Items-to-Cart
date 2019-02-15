@@ -3,7 +3,7 @@
 /* eslint-disable no-useless-constructor */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ItemDescription from './itemDescription.jsx';
+import ItemDescription from './Components/itemDescription.jsx';
 
 
 class Cart extends React.Component {
