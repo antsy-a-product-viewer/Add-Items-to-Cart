@@ -1,5 +1,4 @@
 import React from 'react';
-import getItemSelection from './clientGetReq.js';
 import SelectionListPossibilities from './selectionListPossibilities.jsx';
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-Modal.setAppElement('#store');
+// Modal.setAppElement('#store');
 
 const customStyles = {
   content: {
@@ -39,6 +39,7 @@ class ReturnPolicy extends React.Component {
     let returnPolicy = '';
     let exclusion;
     let wrapping = '';
+    console.log(this.props.data[0])
     if (this.props.data[0].availableToReturn) {
       returnable = 'Returns and exchanges accepted';
       exclusion = 'Exceptions may apply. ';
@@ -103,6 +104,7 @@ class ReturnPolicy extends React.Component {
                 <li style={{ listStyle: 'disc', paddingLeft: '10px' }}>Digital downloads</li>
                 <li style={{ listStyle: 'disc', paddingLeft: '10px' }}>Intimate items (for health/hygiene reasons)</li>
               </div>
+              <button className="closePolicy" onClick={this.closeReturnPolicy}> Close me </button>
             </Modal>
 
           </div>
