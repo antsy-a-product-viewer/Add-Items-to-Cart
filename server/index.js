@@ -6,7 +6,7 @@ const port = 3000;
 const bodyParser = require('body-parser');
 const store = require('../database/seed.js');
 
-app.use(express.static(`${__dirname}/../client/dist`)); // root directory to serve the static files (dist in client folder, where our bundle is)
+app.use('/express.static(`${__dirname}/../client/dist`)); // root directory to serve the static files (dist in client folder, where our bundle is)
 app.use(bodyParser.json());
 
 app.get('/checkout/:productId', (req, res) => {
@@ -17,22 +17,6 @@ app.get('/checkout/:productId', (req, res) => {
     }
     res.status(200).send(inventory);
   });
-});
-
-
-app.post('/checkout/:productId', (req, res) => {
-  // console.log('post request working')
-  let item = req.params.productId;
-  // store.updateInventory(err, item, req.body.amountBought => {
-  // if (err){
-  //   console.log(err)
-  //   res.status(201).send('Not saved')
-  //   return;
-  // }
-  // res.status(201).send('saved in database')
-  // })
-  store.updateInventory(item, req.body.amountBought);
-  res.status(201).send('data changed in database');
 });
 
 
