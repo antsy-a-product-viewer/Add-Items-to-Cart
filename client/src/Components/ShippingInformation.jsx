@@ -155,7 +155,7 @@ shipping to
                     value={this.state.value}
                     onChange={this.shippingToCountry}
                   >
-                    {this.state.shippingTo.map(country => <option>{country}</option>)}
+                    {this.state.shippingTo.map(country => <option className="options">{country}</option>)}
                   </select>
                 </span>
                 <span style={{ float: 'right' }}>

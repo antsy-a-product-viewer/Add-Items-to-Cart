@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1550279630577" clover="3.2.0">
-  <project timestamp="1550279630577" name="All files">
+<coverage generated="1550279819892" clover="3.2.0">
+  <project timestamp="1550279819892" name="All files">
     <metrics statements="112" coveredstatements="93" conditionals="36" coveredconditionals="17" methods="46" coveredmethods="36" elements="194" coveredelements="146" complexity="0" loc="112" ncloc="112" packages="1" files="9" classes="9"/>
     <file name="Overview.jsx" path="/Users/machd/Desktop/Add-Items-to-Cart/client/src/Components/Overview.jsx">
       <metrics statements="12" coveredstatements="12" conditionals="4" coveredconditionals="3" methods="4" coveredmethods="4"/>
@@ -79,19 +79,19 @@
     </file>
     <file name="ShippingInformation.jsx" path="/Users/machd/Desktop/Add-Items-to-Cart/client/src/Components/ShippingInformation.jsx">
       <metrics statements="22" coveredstatements="14" conditionals="8" coveredconditionals="2" methods="9" coveredmethods="4"/>
-      <line num="6" count="2" type="stmt"/>
-      <line num="7" count="2" type="stmt"/>
-      <line num="18" count="2" type="stmt"/>
-      <line num="19" count="2" type="stmt"/>
-      <line num="20" count="2" type="stmt"/>
-      <line num="21" count="2" type="stmt"/>
-      <line num="22" count="2" type="stmt"/>
-      <line num="27" count="2" type="stmt"/>
-      <line num="32" count="2" type="stmt"/>
-      <line num="33" count="2" type="stmt"/>
-      <line num="34" count="2" type="stmt"/>
-      <line num="35" count="2" type="stmt"/>
-      <line num="36" count="2" type="stmt"/>
+      <line num="6" count="3" type="stmt"/>
+      <line num="7" count="3" type="stmt"/>
+      <line num="18" count="3" type="stmt"/>
+      <line num="19" count="3" type="stmt"/>
+      <line num="20" count="3" type="stmt"/>
+      <line num="21" count="3" type="stmt"/>
+      <line num="22" count="3" type="stmt"/>
+      <line num="27" count="3" type="stmt"/>
+      <line num="32" count="3" type="stmt"/>
+      <line num="33" count="3" type="stmt"/>
+      <line num="34" count="3" type="stmt"/>
+      <line num="35" count="3" type="stmt"/>
+      <line num="36" count="3" type="stmt"/>
       <line num="45" count="0" type="stmt"/>
       <line num="46" count="0" type="stmt"/>
       <line num="52" count="0" type="stmt"/>
@@ -99,7 +99,7 @@
       <line num="57" count="0" type="cond" truecount="0" falsecount="4"/>
       <line num="58" count="0" type="stmt"/>
       <line num="68" count="0" type="stmt"/>
-      <line num="74" count="4" type="stmt"/>
+      <line num="74" count="6" type="stmt"/>
       <line num="158" count="0" type="stmt"/>
     </file>
     <file name="itemDescription.jsx" path="/Users/machd/Desktop/Add-Items-to-Cart/client/src/Components/itemDescription.jsx">
@@ -128,7 +128,7 @@
       <line num="86" count="6" type="stmt"/>
       <line num="87" count="6" type="stmt"/>
       <line num="88" count="6" type="stmt"/>
-      <line num="89" count="64" type="stmt"/>
+      <line num="89" count="62" type="stmt"/>
       <line num="91" count="6" type="stmt"/>
       <line num="97" count="0" type="stmt"/>
       <line num="101" count="0" type="stmt"/>
