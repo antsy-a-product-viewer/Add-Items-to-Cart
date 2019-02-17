@@ -33,7 +33,8 @@ npm run test
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 - Node 6.13.0
-- etc
+- Mongoose 5.4.10
+- Mongodb 3.1.13
 
 ## Development
 
