@@ -4,10 +4,9 @@
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/antsy-a-product-viewer/shop-summary
+  - https://github.com/antsy-a-product-viewer/reviews
+  - https://github.com/antsy-a-product-viewer/Photo-Carousel
 
 ## Table of Contents
 
@@ -18,6 +17,16 @@
 ## Usage
 
 > Some usage instructions
+
+mongod 
+mongo 
+npm run seed
+npm start 
+npm run react-dev
+
+## Running the tests
+
+npm run test
 
 ## Requirements
 
@@ -35,11 +44,6 @@ From within the root directory:
 ```sh
 npm install -g webpack
 npm install
-mongod 
-mongo 
-npm run seed
-npm start 
-npm run react-dev
-npm run test 
+
 ```
 
