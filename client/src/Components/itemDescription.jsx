@@ -50,9 +50,14 @@ class ItemDescription extends React.Component {
 
 
   postingDescription() {
-    console.log(window.location.pathname, 'this is pathname')
-    fetch(`/checkout/${this.state.randomItem}`)
-      .then(res => res.json())
+    let endpoint = window.location.pathname;
+    console.log()
+    // console.log(endpoint, 'this is pathname')
+    fetch(`${endpoint}` + 'item')
+      // fetch(`${endpoint}`)
+      .then((res) => {
+        return res.json()
+      })
       .then((res) => {
         console.log(res);
         this.setState({
@@ -140,7 +145,7 @@ Ask A Question
                     {this.state.description}
 , listing #
                     {' '}
-                    {this.state.randomItem}
+                    {this.state.data[0]['productId']}
                     <input type="text" style={{ width: '500px', height: '200px', wordWrap: 'break-word' }} />
                     <button
                       onClick={this.closeAskQuestion}

@@ -6,13 +6,9 @@ import ShippingInformation from '../client/src/Components/ShippingInformation.js
 import globalFetch from 'jest-fetch-mock';
 import sinon from 'sinon'
 import Overview from '../client/src/Components/Overview.jsx'
-import Cart from '../client/src/AddToCart.jsx'
-import ReactDOM from 'react-dom'
 import ReturnPolicy from '../client/src/Components/ReturnPolicy.jsx';
 import SelectionList from '../client/src/Components/SelectionList.jsx';
 import renderer from 'react-test-renderer';
-
-
 configure({ adapter: new Adapter() });
 
 const mockData = [
@@ -34,20 +30,13 @@ const mockData = [
 describe("Overview Component", () => {
   
   it('Should exist', () => {
-    const wrapper = shallow(<ItemDescription />);
+    const wrapper = shallow(<ItemDescription/>);
     expect(wrapper.exists()).toBe(true)
   });
   
   it('Should render without throwing an error', () => {
     expect(shallow(<ItemDescription />).find('.description').exists()).toBe(true);
   });
-
-  it('Should render other modules when mounted', () => {
-    const props = {stateChange: true}
-    const wrapper = shallow(<ItemDescription {...props}/>);
-    // expect(wrapper.findWhere(node => node.is(SelectionList)).exists()).toBe(true)
-    expect(wrapper).toContain(<SelectionList />);
-  })
   
   it('Should call componentDidMount', () => {
     const mount = jest.spyOn(ItemDescription.prototype, 'componentDidMount');
@@ -106,4 +95,51 @@ describe('Return Policy', () => {
     wrapper.find('.closePolicy').simulate('click');
     expect(ReturnPolicy.prototype.closeReturnPolicy).toHaveBeenCalled();
   })
+})
+
+describe('Selection List', () => {
+  it('Should run component did mount', () => {
+    const mounted = jest.spyOn(SelectionList.prototype, 'componentDidMount')
+    const wrapper = mount(<SelectionList data={mockData}/>);
+    expect(SelectionList.prototype.componentDidMount).toHaveBeenCalled();
+    mounted.mockRestore();
+  });
+  it('Should return an empty div if there are no state changes', () => {
+    const wrapper = shallow(<SelectionList data={mockData}/>);
+    expect(wrapper.find('.selectionList').length).toEqual(1);
+  });
+
+describe('Overview', () => {
+  it ('should exist', () => {
+    const wrapper = mount(<Overview data={mockData}/>);
+    expect(wrapper.exists()).toBe(true);
+  })
+  it ('Should invoke componentDidMount', () => {
+    const mounted = jest.spyOn(Overview.prototype, 'componentDidMount');
+    const wrapper = shallow(<Overview data={mockData}/>);
+    expect(Overview.prototype.componentDidMount).toHaveBeenCalled();
+  })
+  // it ('Should display the correct overview', () => {
+  //   const wrapper = shallow(<OverviewListEntry data={mockData}/>);
+  //   let overviewData = document.getElementsByClassName('overview').childNodes.item(0).nodeValue
+  //   console.log(overviewData, 'data')
+  //   expect(wrapper.find(overviewData)).toEqual('short id pork picanha nostrud et deserunt mignon meatloaf est meatloaf magna')
+  // })
+});
+
+describe('Shipping Information', () => {
+  it ('Should invoke component did mount', () => {
+    const mounted = jest.spyOn(ShippingInformation.prototype, 'componentDidMount');
+    const wrapper = shallow(<ShippingInformation data={mockData}/>);
+    expect(ShippingInformation.prototype.componentDidMount).toHaveBeenCalled();
+  });
+
+  it ("Should show the amount of time it takes to ship if information entered", () => {
+    const props = {enteredShippingInfo : true};
+    const wrapper = shallow(<ShippingInformation data={mockData} {...props}/>);
+    expect(wrapper.find('.manufacturingTime').length).toEqual(1);
+  });
+
+})
+
 })
