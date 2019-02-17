@@ -6,10 +6,12 @@ const port = 3000;
 const bodyParser = require('body-parser');
 const store = require('../database/seed.js');
 
-app.use(express.static(`${__dirname}/../client/dist`)); // root directory to serve the static files (dist in client folder, where our bundle is)
+// app.use(express.static(`${__dirname}/../client/dist`)); // root directory to serve the static files (dist in client folder, where our bundle is)
+
+app.use('/checkout/:productId', express.static(`${__dirname}/../client/dist`))
 app.use(bodyParser.json());
 
-app.get('/checkout/:productId', (req, res) => {
+app.get('/checkout/:productId/item', (req, res) => {
   let item = req.params.productId;
   store.checkInventoryList(item, (err, inventory) => {
     if (err) {
