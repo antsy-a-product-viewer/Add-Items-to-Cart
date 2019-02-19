@@ -2,7 +2,7 @@
 const express = require('express');
 
 const app = express();
-const port = 30000;
+const port = 3000;
 const bodyParser = require('body-parser');
 const store = require('../database/seed.js');
 
