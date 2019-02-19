@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Cart from './AddToCart.jsx';
+import Cart from './Components/itemDescription.jsx';
 
 ReactDOM.render(<Cart />, document.getElementById('store'));

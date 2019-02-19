@@ -17,3 +17,8 @@ hr {
   margin-inline-end: auto;
 }
 
+.description { 
+  font-weight: 'bold'; 
+  font-size: '24px';
+}
+
