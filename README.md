@@ -18,11 +18,11 @@ Add to Cart
 
 > Some usage instructions
 
--mongod 
--mongo 
--npm run seed
--npm start 
--npm run react-dev
+- mongod 
+- mongo 
+- npm run seed
+- npm start 
+- npm run react-dev
 
 ## Running the tests
 
