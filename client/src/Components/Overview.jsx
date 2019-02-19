@@ -1,5 +1,6 @@
 import React from 'react';
 import OverviewList from './OverviewList.jsx';
+import style from './style.css.js'
 
 class Overview extends React.Component {
   constructor(props) {
@@ -36,12 +37,12 @@ class Overview extends React.Component {
         {this.state.hasOverview
           ? (
             <div className="OverallOverview">
-              <div className="Overview" style={{ fontWeight: 'bold' }}>
+              <div className="Overview" style={style.bold}>
             Overview
               </div>
               <OverviewList overviews={this.state.overview} />
               <br />
-              <hr />
+              <hr style={style.hr}/>
               {' '}
             </div>
           )

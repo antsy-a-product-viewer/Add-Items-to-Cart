@@ -1,5 +1,5 @@
 import React from 'react';
-
+import style from './style.css.js'
 
 class ShippingInformation extends React.Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class ShippingInformation extends React.Component {
   }
 
   getShippingInformation() {
-    let manufacturingTime;
+    let manufacturingTime = null;
     const shippingFrom = this.props.data[0].shippingFrom;
     const shippingTo = this.props.data[0].shippingTo;
     const deliveryDate = this.props.data[0].deliveryDate;
@@ -74,13 +74,13 @@ class ShippingInformation extends React.Component {
     return (
       <div>
         <div className="shippingInformation">
-          <div style={{ fontWeight: 'bold' }}>
+          <div style={style.bold}>
         Shipping & Returns
           </div>
           {!this.state.enteredShippingInfo
             ? (
               <div>
-                <div className="manufacturingTime" style={{ fontWeight: 'bold' }}>
+                <div className="manufacturingTime" style={style.bold}>
               Ready to ship in
                   {' '}
                   {this.state.shippingTime}
@@ -94,7 +94,7 @@ days
                   {' '}
                   {this.state.shippingFrom}
                 </div>
-                <div className="getShippingCost" style={{ textDecorationLine: 'underline', cursor: 'pointer' }} onClick={this.getShippingInfo}>
+                <div className="getShippingCost" style={style.cursor} onClick={this.getShippingInfo}>
              Get Shipping Cost
                 </div>
               </div>
@@ -102,7 +102,7 @@ days
 
             : (
               <div>
-                <div className="deliver" style={{ fontWeight: 'bold' }}>
+                <div className="deliver" style={style.bold}>
             Estimated delivery:
                   {' '}
                   {this.state.deliveryDate[0]}
@@ -130,7 +130,7 @@ shipping to
                 </span>
                 <span
                   className="shippingAddress"
-                  style={{ textDecorationLine: 'underline' }}
+                  style={style.underline}
                   onClick={this.getShippingInfo}
                 >
                   {this.state.shippingToCountry}
@@ -145,20 +145,20 @@ shipping to
           {this.state.getShippingCost
             ? (
               <form onSubmit={this.showShipping}>
-                <span style={{ float: 'left' }}>
+                <span style={style.leftFloat}>
               Country
                   {' '}
                   <br />
                   <select
                     className="country"
-                    style={{ width: '150px' }}
+                    style={style.shippingCostInput}
                     value={this.state.value}
                     onChange={this.shippingToCountry}
                   >
                     {this.state.shippingTo.map(country => <option className="options">{country}</option>)}
                   </select>
                 </span>
-                <span style={{ float: 'right' }}>
+                <span style={style.rightFloat}>
               Zip or postal code
                   {' '}
                   <br />
@@ -180,7 +180,7 @@ shipping to
         {' '}
         <br />
         {' '}
-        <hr />
+        <hr style={style.hr}/>
       </div>
     );
   }

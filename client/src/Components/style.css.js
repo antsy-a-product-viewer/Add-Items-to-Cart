@@ -1,4 +1,12 @@
 export default {
+
+  container : {
+    height: '1000px',
+    width: '390px',
+    float: 'right',
+    marginRight: '10%'
+  }, 
+
   boldDescription : { 
     fontWeight: 'bold',
     fontSize: '24px'  
@@ -63,6 +71,10 @@ export default {
     float: 'left'   
   },
 
+  rightFloat : {
+    float : 'right'
+  },
+
   leftFloatBold : {
     float: 'left',  
     fontWeight : 'bold'
@@ -87,9 +99,46 @@ export default {
   stock : {
     float: 'left', 
     fontSize: '20px'
+  },
+
+  bold : {
+    fontWeight: 'bold'
+  }, 
+
+  cursor : { 
+    textDecorationLine: 'underline', 
+    cursor: 'pointer'    
+  },
+
+  underline : {
+    textDecorationLine: 'underline' 
+  },
+
+  shippingCostInput : {
+    width: '100px'  
+  },
+
+  returnModal : {
+    width: '400px', 
+    height: '100px'   
+  },
+
+  bulletPoint : { 
+    listStyle: 'disc', 
+    paddingLeft: '10px'
+  },
+
+  selectOptions : {
+    height: '30px', 
+    background: 'white',
+    width: '390px'
+
+  },
+
+  hr : {
+    display: 'block',
+    marginInlineStart: 'auto',
+    marginInlineEnd: 'auto'
   }
-
-
-
 
 }

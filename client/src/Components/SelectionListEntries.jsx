@@ -1,4 +1,6 @@
 import React from 'react';
+import style from './style.css';
+
 
 class SelectionListEntries extends React.Component {
   constructor(props) {
@@ -25,9 +27,9 @@ class SelectionListEntries extends React.Component {
   render() {
     return (
       <div>
-        <div className="selectionLists" style={{ marginBottom: "18px" }}>
+        <div className="selectionLists" style={style.margin}>
           {this.props.selection}
-          <select className="selectOptions" style={{ height: '30px', background: 'white' }}>
+          <select className="selectOptions" style={style.selectOptions}>
             {this.props.options.map(option => <option>{option}</option>)}
           </select>
         </div>

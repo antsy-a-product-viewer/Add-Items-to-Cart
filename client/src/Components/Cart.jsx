@@ -103,7 +103,7 @@ class Cart extends React.Component {
 
   render() {
     return (
-      <div id="container">
+      <div id="container" style = {style.container}>
 
       <div>
         <div className="description" style={style.boldDescription}>{this.state.description }</div>
@@ -241,7 +241,7 @@ left.
         {' '}
         <br />
 
-        <hr />
+        <hr style={style.hr}/>
 
         <div className="overview">
           {this.state.stateChange ? <Overview data={this.state.data} /> : null}

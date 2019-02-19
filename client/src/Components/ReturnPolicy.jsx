@@ -1,7 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-
-// Modal.setAppElement('#store');
+import style from './style.css.js'
 
 const customStyles = {
   content: {
@@ -74,14 +73,14 @@ class ReturnPolicy extends React.Component {
     return (
       <div>
         <div className="returnOverview">
-          <div className="returns" style={{ fontWeight: 'bold' }}>
+          <div className="returns" style={style.bold}>
             {this.state.returnPolicy}
           </div>
           <div className="returnPolicy">
             <span>{this.state.exclusions}</span>
             <span
               className="Return"
-              style={{ textDecorationLine: 'underline', cursor: 'pointer' }}
+              style={style.cursor}
               onClick={this.showReturnPolicy}
             >
               {this.state.returnOverview}
@@ -91,7 +90,7 @@ class ReturnPolicy extends React.Component {
               onRequestClose={this.closeReturnPolicy}
               style={customStyles}
             >
-              <div className="modalContainer" style={{ width: '400px', height: '100px' }}>
+              <div className="modalContainer" style={style.returnModal}>
                 <h1>Returns & Exchanges</h1>
                 <p> I gladly accept returns, exchanges, and cancellations</p>
                 <p>Contact me within: 14 days of delivery </p>
@@ -99,10 +98,10 @@ class ReturnPolicy extends React.Component {
                 <p>Request a cancellation within: 2 days of purchase</p>
                 <h2>The following items can't be returned or exchanged</h2>
                 <p>Because of the nature of these items, unless they arrive damaged or defective, I can't accept returns for: </p>
-                <li style={{ listStyle: 'disc', paddingLeft: '10px' }}>Custom or personalized orders</li>
-                <li style={{ listStyle: 'disc', paddingLeft: '10px' }}>Perishable products (like food or flowers)</li>
-                <li style={{ listStyle: 'disc', paddingLeft: '10px' }}>Digital downloads</li>
-                <li style={{ listStyle: 'disc', paddingLeft: '10px' }}>Intimate items (for health/hygiene reasons)</li>
+                <li style={style.bulletPoint}>Custom or personalized orders</li>
+                <li style={style.bulletPoint}>Perishable products (like food or flowers)</li>
+                <li style={style.bulletPoint}>Digital downloads</li>
+                <li style={style.bulletPoint}>Intimate items (for health/hygiene reasons)</li>
               </div>
               <button className="closePolicy" onClick={this.closeReturnPolicy}> Close me </button>
             </Modal>
@@ -116,7 +115,7 @@ class ReturnPolicy extends React.Component {
           </div>
         </div>
         {' '}
-        <hr />
+        <hr style={style.hr}/>
       </div>
     );
   }

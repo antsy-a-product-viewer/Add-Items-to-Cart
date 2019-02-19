@@ -1,7 +1,8 @@
 import React from 'react';
+import style from './style.css.js'
 
 const OverviewListEntry = props => (
-  <li className="overview" style={{ listStyle: 'disc', paddingLeft: '10px' }}>
+  <li className="overview" style={style.bulletPoint}>
     {props.overview}
   </li>
 );
