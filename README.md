@@ -18,11 +18,15 @@ Add to Cart
 
 > Some usage instructions
 
-- mongod 
-- mongo 
-- npm run seed
-- npm start 
-- npm run react-dev
+- mongod (to start the mongDb)
+- mongo (to start the local mongo drive)
+- Uncomment out seed() in database.js
+- npm run seed (to seed the database)
+- comment out seed() in database.js
+- npm start (to start the server) 
+- npm run react-dev (to start webpack and transpile the files in src)
+
+- The server should run on localhost:3000/product/`{productID}`
 
 ## Running the tests
 
