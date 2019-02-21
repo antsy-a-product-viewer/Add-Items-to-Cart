@@ -3,8 +3,9 @@
 /* eslint-disable prefer-const */
 /* eslint-disable comma-dangle */
 const mongoose = require('mongoose');
+const find = require('../config.js')
 
-mongoose.connect('mongodb://localhost/checkout');
+mongoose.connect(find.mlabsDB, {useNewUrlParser: true});
 
 const inventorySchema = mongoose.Schema({
   productId: {
