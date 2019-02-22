@@ -38,7 +38,6 @@ class ReturnPolicy extends React.Component {
     let returnPolicy = '';
     let exclusion;
     let wrapping = '';
-    console.log(this.props.data[0])
     if (this.props.data[0].availableToReturn) {
       returnable = 'Returns and exchanges accepted';
       exclusion = 'Exceptions may apply. ';
@@ -103,7 +102,6 @@ class ReturnPolicy extends React.Component {
                 <li style={style.bulletPoint}>Digital downloads</li>
                 <li style={style.bulletPoint}>Intimate items (for health/hygiene reasons)</li>
               </div>
-              <button className="closePolicy" onClick={this.closeReturnPolicy}> Close me </button>
             </Modal>
 
           </div>
