@@ -48,13 +48,12 @@ class Cart extends React.Component {
 
 
   postingDescription() {
-    let endpoint = 'http://localhost:3000' + window.location.pathname + 'item'
+    let endpoint = 'http://34.217.208.55' + window.location.pathname + 'item'
     fetch(`${endpoint}`)
       .then((res) => {
         return res.json()
       })
       .then((res) => {
-        console.log(res);
         this.setState({
           description: res[0].description,
           price: res[0].price,
