@@ -18,8 +18,7 @@ Add to Cart
 
 > Some usage instructions
 
-- mongod (to start the mongDb)
-- mongo (to start the local mongo drive)
+- create a config.js file and export a mLabs database, consult with me for the url or create a new url
 - Uncomment out seed() in database.js
 - npm run seed (to seed the database)
 - comment out seed() in database.js
